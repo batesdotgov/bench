@@ -1,1 +1,1 @@
-// use gateway files for accessing API's, mail clients, etc
+// use gateway files for accessing external API's, mail clients, etc

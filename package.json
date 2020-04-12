@@ -9,7 +9,10 @@
     "start": "node build/index.js",
     "start:client": "cd client && yarn serve",
     "db:up": "bash scripts/start-db.sh",
-    "db:down": "bash scripts/stop-db.sh"
+    "db:init": "node data/init.js",
+    "db:down": "bash scripts/stop-db.sh",
+    "db:migrate": "knex migrate:latest",
+    "db:rollback": "knex migrate:rollback"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +31,6 @@
     "express": "^4.17.1",
     "knex": "^0.20.13",
     "morgan": "^1.10.0",
-    "mssql": "^6.2.0",
     "mysql": "^2.18.1",
     "qs": "^6.9.3"
   }

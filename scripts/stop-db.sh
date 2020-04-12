@@ -1,1 +1,1 @@
-docker-compose -f data/docker-compose.yml down
+docker-compose -f data/docker-compose.local.yml down

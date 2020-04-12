@@ -1,1 +1,1 @@
-docker-compose -f data/docker-compose.yml up -d
+docker-compose -f data/docker-compose.local.yml up -d
