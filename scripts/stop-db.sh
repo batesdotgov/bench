@@ -1,0 +1,1 @@
+docker-compose -f data/docker-compose.yml down
