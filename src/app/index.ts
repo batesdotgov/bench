@@ -1,8 +1,8 @@
 import express, { Application } from "express";
 
 class App {
-  public app: Application;
-  public port: number;
+  private app: Application;
+  private port: number;
 
   constructor(appInit: { port: number; middleWares: any; controllers: any }) {
     this.app = express();
