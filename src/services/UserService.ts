@@ -1,10 +1,12 @@
 import Knex from "knex";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { IConfig, IUserService, INewUser } from "../types";
 
 class UserService implements IUserService {
-  config: IConfig;
-  db: Knex;
+  private config: IConfig;
+  private db: Knex;
+
   constructor(config: IConfig, db: Knex) {
     this.config = config;
     this.db = db;
@@ -25,15 +27,31 @@ class UserService implements IUserService {
     }
   };
 
-  Login = async () => {};
+  Login = async (data: INewUser) => {
+    const user = await this.FindByUsername(data.username);
+
+    if (!user) {
+      return null;
+    }
+
+    if (!this.comparePasswords(data.password, user.password)) {
+      return null;
+    }
+
+    return this.generateToken(user.id);
+  };
 
   private generateHash = (password: string) => {
     return bcrypt.hashSync(password, 12);
   };
 
-  private comparePasswords = () => {};
+  private comparePasswords = (password: string, hashedPassword: string) => {
+    return bcrypt.compareSync(password, hashedPassword);
+  };
 
-  generateToken = () => {};
+  generateToken = (userId: string) => {
+    return jwt.sign({ userId }, this.config.JWT_SECRET, { expiresIn: 60 * 60 });
+  };
 }
 
 export default UserService;

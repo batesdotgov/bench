@@ -17,12 +17,17 @@ class AuthController {
   };
 
   private login = async (req: Request, res: Response) => {
-    return res.send("login");
+    const token = await this.userService.Login(req.body);
+    if (!token) {
+      return res.status(400).json({ msg: "invalid login" });
+    }
+
+    return res.json({ token });
   };
 
   private register = async (req: Request, res: Response) => {
     if (await this.userService.FindByUsername(req.body.username)) {
-      return res.status(400).send({ msg: "username already exists" });
+      return res.status(400).json({ msg: "username already exists" });
     }
 
     if (await this.userService.CreateUser(req.body)) {

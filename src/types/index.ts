@@ -6,6 +6,7 @@ export interface IConfig {
 export interface IUserService {
   FindByUsername: any;
   CreateUser: any;
+  Login: any;
 }
 
 export interface INewUser {

@@ -14,16 +14,8 @@ var db: Knex = Knex(knexConfig[process.env.NODE_ENV]);
 
 const app = new App({
   port: config.PORT,
-  controllers: [
-    new HomeController(config),
-    new AuthController(new UserService(config, db)),
-  ],
-  middleWares: [
-    bodyParser.json(),
-
-    morgan("dev"),
-    bodyParser.urlencoded({ extended: true }),
-  ],
+  controllers: [new HomeController(config), new AuthController(new UserService(config, db))],
+  middleWares: [bodyParser.json(), morgan("dev"), bodyParser.urlencoded({ extended: true })],
 });
 
 app.listen();
