@@ -1,7 +1,8 @@
 import Knex from "knex";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { IConfig, IUserService, INewUser } from "../types";
+
+import { IConfig, IUserService, INewUser, IUser } from "../types";
 
 class UserService implements IUserService {
   private config: IConfig;
@@ -19,7 +20,10 @@ class UserService implements IUserService {
   CreateUser = async (data: INewUser) => {
     try {
       const hashedPassword = this.generateHash(data.password);
-      await this.db("users").insert({ username: data.username, password: hashedPassword });
+      await this.db("users").insert({
+        username: data.username,
+        password: hashedPassword,
+      });
       return true;
     } catch (error) {
       console.log(error);
@@ -28,7 +32,7 @@ class UserService implements IUserService {
   };
 
   Login = async (data: INewUser) => {
-    const user = await this.FindByUsername(data.username);
+    const user: IUser = await this.FindByUsername(data.username);
 
     if (!user) {
       return null;

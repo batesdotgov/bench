@@ -1,0 +1,17 @@
+$grey: #edf2f6;
+$text-color: #47495c;
+
+html,
+body {
+  background-color: $grey;
+  color: $text-color;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 1.6rem;
+}

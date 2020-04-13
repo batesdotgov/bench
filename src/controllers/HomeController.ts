@@ -1,12 +1,10 @@
 import { Router, Request, Response } from "express";
-import { IConfig } from "types";
 
 class HomeController {
   public router = Router();
-  public config: IConfig;
-  constructor(config) {
+
+  constructor() {
     this.initRoutes();
-    this.config = config;
   }
 
   initRoutes = () => {
@@ -14,7 +12,7 @@ class HomeController {
   };
 
   index = (req: Request, res: Response) => {
-    return res.send(this.config.JWT_SECRET);
+    return res.send("bench-api");
   };
 }
 

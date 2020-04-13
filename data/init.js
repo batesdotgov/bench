@@ -1,14 +1,15 @@
-var conn = {
+import K from "knex";
+
+const conn = {
   host: "0.0.0.0",
   user: "root",
   password: "password",
   charset: "utf8",
 };
 
-var knex = require("knex")({ client: "mysql", connection: conn });
+const db = K({ client: "mysql", connection: conn });
 
-knex
-  .raw("drop database my_database")
+db.raw("drop database my_database")
   .then(function () {
     knex
       .raw("CREATE DATABASE IF NOT EXISTS my_database")

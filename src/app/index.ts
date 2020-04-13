@@ -4,7 +4,7 @@ class App {
   private app: Application;
   private port: number;
 
-  constructor(appInit: { port: number; middleWares: any; controllers: any }) {
+  constructor(appInit: { port: number; middleWares; controllers }) {
     this.app = express();
     this.port = appInit.port;
 
@@ -12,14 +12,14 @@ class App {
     this.routes(appInit.controllers);
   }
 
-  private middlewares(middleWares: any) {
-    middleWares.forEach((middleWare: any) => {
+  private middlewares(middleWares) {
+    middleWares.forEach((middleWare) => {
       this.app.use(middleWare);
     });
   }
 
-  private routes(controllers: any) {
-    controllers.forEach((controller: any) => {
+  private routes(controllers) {
+    controllers.forEach((controller) => {
       this.app.use("/api", controller.router);
     });
   }
