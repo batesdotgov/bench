@@ -11,7 +11,7 @@
     "db:up": "bash scripts/start-db.sh",
     "db:down": "bash scripts/stop-db.sh",
     "db:init": "node data/init.js",
-    "db:migrate": "knex migrate:latest",
+    "db:migrate": "knex --knexfile=./src/knexfile.js migrate:latest",
     "db:rollback": "knex migrate:rollback"
   },
   "keywords": [],
@@ -27,9 +27,15 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express-validator": "^3.0.0",
     "@types/knex": "^0.16.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.13",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",

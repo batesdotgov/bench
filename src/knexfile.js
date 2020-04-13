@@ -1,5 +1,6 @@
 module.exports = {
   development: {
+    debug: true,
     client: "mysql",
     connection: {
       database: "my_database",
@@ -7,38 +8,41 @@ module.exports = {
       password: "password",
     },
     migrations: {
+      directory: "../migrations",
       tableName: "knex_migrations",
     },
   },
 
   staging: {
-    client: "postgresql",
+    client: "mysql",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      database: "my_database",
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
     },
     pool: {
       min: 2,
       max: 10,
     },
     migrations: {
+      directory: "../migrations",
       tableName: "knex_migrations",
     },
   },
 
   production: {
-    client: "postgresql",
+    client: "mysql",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
+      database: "my_database",
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
     },
     pool: {
       min: 2,
       max: 10,
     },
     migrations: {
+      directory: "../migrations",
       tableName: "knex_migrations",
     },
   },

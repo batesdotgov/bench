@@ -5,8 +5,8 @@
     "lib": ["es6"],
     "allowJs": true,
     "outDir": "build",
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": "./src/",
+    "rootDir": "./src/",
     "esModuleInterop": true
   },
   "include": ["src/**/*.ts"],
