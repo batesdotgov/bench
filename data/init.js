@@ -8,12 +8,19 @@ var conn = {
 var knex = require("knex")({ client: "mysql", connection: conn });
 
 knex
-  .raw("CREATE DATABASE IF NOT EXISTS my_database")
+  .raw("drop database my_database")
   .then(function () {
-    console.log("database created");
-    knex.destroy();
+    knex
+      .raw("CREATE DATABASE IF NOT EXISTS my_database")
+      .then(function () {
+        console.log("database created");
+        knex.destroy();
+      })
+      .catch(function (err) {
+        console.error("error creating database:", err);
+        process.exit(1);
+      });
   })
   .catch(function (err) {
-    console.error("error creating database:", err);
-    process.exit(1);
+    console.error("error dropping database:", err);
   });

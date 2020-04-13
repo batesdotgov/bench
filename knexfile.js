@@ -6,6 +6,9 @@ module.exports = {
       user: "root",
       password: "password",
     },
+    migrations: {
+      tableName: "knex_migrations",
+    },
   },
 
   staging: {
