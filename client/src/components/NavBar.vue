@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="nav-left">
-      <h1>Bench</h1>
+      <h1>BENCH.</h1>
     </div>
     <div class="nav-right">
       <div v-if="!isLoggedIn" class="logged-out-nav">
@@ -19,11 +19,13 @@
 import { mapGetters } from "vuex";
 
 export default {
-  computed: mapGetters(["isLoggedIn"]),
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
   methods: {
     logout() {
       this.$store.dispatch("logout").then(() => {
-        this.$router.push("/");
+        window.location.replace("/");
       });
     },
   },
@@ -40,5 +42,8 @@ nav {
   background-color: white;
   border-bottom: 1px solid #eaecef;
   padding: 20px 50px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>

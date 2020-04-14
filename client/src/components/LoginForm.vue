@@ -1,24 +1,26 @@
 <template>
   <div class="login-page">
     <div class="card">
-      <form novalidate>
-        <div class="form-input" :class="{ 'form-input--error': $v.form.username.$error }">
-          <label for="username">Username</label>
-          <input id="fname" v-model="$v.form.username.$model" type="text" />
-          <div class="input-error--wrapper">
-            <span v-if="submitted && !$v.form.username.required">this field is required.</span>
+      <div class="form-container">
+        <form novalidate>
+          <div class="form-group" :class="{ 'form-input--error': showError($v.form.username.$error) }">
+            <label for="username">Username</label>
+            <input autocomplete="off" id="name" v-model="$v.form.username.$model" type="text" />
+            <div class="input-error--wrapper">
+              <span v-if="submitted && !$v.form.username.required">this field is required.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-input" :class="{ 'form-input--error': $v.form.password.$error }">
-          <label for="password">Password</label>
-          <input type="password" v-model="$v.form.password.$model" />
-          <div class="input-error--wrapper">
-            <span v-if="submitted && !$v.form.password.required">this field is required.</span>
-            <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
+          <div class="form-group" :class="{ 'form-input--error': showError($v.form.password.$error) }">
+            <label for="password">Password</label>
+            <input type="password" v-model="$v.form.password.$model" />
+            <div class="input-error--wrapper">
+              <span v-if="submitted && !$v.form.password.required">this field is required.</span>
+              <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
+            </div>
           </div>
-        </div>
-      </form>
-      <button type="submit" @click.prevent="handleSubmit">Login</button>
+        </form>
+        <button type="submit" @click.prevent="handleSubmit">Login</button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +32,7 @@ export default {
     return {
       name: "Bench",
       submitted: false,
+      submitError: null,
       form: {
         username: "",
         password: "",
@@ -43,6 +46,9 @@ export default {
     },
   },
   methods: {
+    showError(hasError) {
+      return this.$v.form.$dirty && this.submitted && hasError;
+    },
     handleSubmit() {
       this.submitted = true;
       this.$v.form.$touch();
@@ -56,10 +62,18 @@ export default {
     },
 
     handleLoginError(err) {
-      console.log(err);
+      this.submitError = err.message || "There was an error logging in";
     },
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.login-page {
+  width: 400px;
+  margin: 0 auto;
+}
+.form-container {
+  padding: 20px;
+}
+</style>

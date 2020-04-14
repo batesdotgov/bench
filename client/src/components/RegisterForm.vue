@@ -2,14 +2,14 @@
   <div class="login-page">
     <div class="card">
       <form novalidate>
-        <div class="form-input" :class="{ 'form-input--error': $v.form.username.$error }">
+        <div class="form-input" :class="{ 'form-input--error': showError($v.form.username.$error) }">
           <label for="username">Username</label>
           <input id="fname" v-model="$v.form.username.$model" type="text" />
           <div class="input-error--wrapper">
             <span v-if="submitted && !$v.form.username.required">this field is required.</span>
           </div>
         </div>
-        <div class="form-input" :class="{ 'form-input--error': $v.form.password.$error }">
+        <div class="form-input" :class="{ 'form-input--error': showError($v.form.password.$error) }">
           <label for="password">Password</label>
           <input type="password" v-model.trim="$v.form.password.$model" />
           <div class="input-error--wrapper">
@@ -17,7 +17,7 @@
             <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
           </div>
         </div>
-        <div class="form-input" :class="{ 'form-input--error': $v.form.confirmPassword.$error }">
+        <div class="form-input" :class="{ 'form-input--error': showError($v.form.confirmPassword.$error) }">
           <label for="password">Confirm Password</label>
           <input type="password" v-model.trim="$v.form.confirmPassword.$model" />
           <div class="input-error--wrapper">
@@ -69,8 +69,9 @@ export default {
       this.$v.form.$touch();
       !this.$v.form.$invalid && this.register();
     },
-    async register() {
-      console.log("shit");
+    async register() {},
+    showError(hasError) {
+      return this.$v.form.$dirty && this.submitted && hasError;
     },
   },
 };
