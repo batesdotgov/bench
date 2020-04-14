@@ -20,10 +20,14 @@ export default new Vuex.Store({
   actions: {
     login: ({ commit }) => {
       commit("auth_success");
+      localStorage.setItem("access_token", "sdfsdfd");
     },
     logout: ({ commit }) => {
       commit("logout");
       return new Promise((resolve) => resolve());
+    },
+    set_auth: ({ commit }) => {
+      commit("auth_success");
     },
   },
   getters: {

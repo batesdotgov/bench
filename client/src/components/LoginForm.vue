@@ -44,13 +44,19 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log(this.$v.form.username.$error);
       this.submitted = true;
       this.$v.form.$touch();
       !this.$v.form.$invalid && this.login();
     },
     async login() {
-      this.$store.dispatch("login");
+      this.$store
+        .dispatch("login")
+        .then(() => this.$router.push("/"))
+        .catch((err) => this.handleLoginError(err));
+    },
+
+    handleLoginError(err) {
+      console.log(err);
     },
   },
 };

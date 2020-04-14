@@ -1,7 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
+
+// store
 import store from "@/store/store";
-import HomeComponent from "@/components/HomeComponent";
+
+// Components
+import HomePage from "@/components/HomePage";
 import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
 import BenchItemForm from "@/components/BenchItemForm";
@@ -19,7 +23,7 @@ const authCheck = (to, from, next) => {
 const routes = [
   {
     path: "/",
-    component: HomeComponent,
+    component: HomePage,
   },
   {
     path: "/login",
