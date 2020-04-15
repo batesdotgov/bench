@@ -1,49 +1,20 @@
+/*eslint-disable */
+const { knexSnakeCaseMappers } = require("objection");
+
 module.exports = {
-  development: {
-    debug: true,
-    client: "mysql",
-    connection: {
-      database: "my_database",
-      user: "root",
-      password: "password",
-    },
-    migrations: {
-      directory: "../migrations",
-      tableName: "knex_migrations",
-    },
+  client: "mysql",
+  connection: {
+    database: "my_database",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
   },
-
-  staging: {
-    client: "mysql",
-    connection: {
-      database: "my_database",
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      directory: "../migrations",
-      tableName: "knex_migrations",
-    },
+  ...knexSnakeCaseMappers(),
+  pool: {
+    min: 2,
+    max: 10,
   },
-
-  production: {
-    client: "mysql",
-    connection: {
-      database: "my_database",
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      directory: "../migrations",
-      tableName: "knex_migrations",
-    },
+  migrations: {
+    directory: "../migrations",
+    tableName: "knex_migrations",
   },
 };

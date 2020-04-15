@@ -12,7 +12,7 @@ class HomeController {
   };
 
   index = (req: Request, res: Response) => {
-    return res.send("bench-api");
+    return res.json({ status: "ok" });
   };
 }
 

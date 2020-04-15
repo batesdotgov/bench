@@ -1,4 +1,5 @@
-import K from "knex";
+/* eslint-disable */
+var K = require("knex");
 
 const conn = {
   host: "0.0.0.0",
@@ -7,9 +8,10 @@ const conn = {
   charset: "utf8",
 };
 
-const db = K({ client: "mysql", connection: conn });
+const knex = K({ client: "mysql", connection: conn });
 
-db.raw("drop database my_database")
+knex
+  .raw("drop database if exists my_database")
   .then(function () {
     knex
       .raw("CREATE DATABASE IF NOT EXISTS my_database")

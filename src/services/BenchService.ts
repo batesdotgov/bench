@@ -8,8 +8,8 @@ class BenchService implements IBenchService {
     this.db = db;
   }
 
-  ListBenchItems = () => {
-    return "hi";
+  ListBenchItems = async (userId) => {
+    return await this.db("bench_items").where({ userId: parseInt(userId, 12) });
   };
 
   CreateItem = async (itemData: INewBenchItem): Promise<boolean> => {
@@ -17,6 +17,7 @@ class BenchService implements IBenchService {
       await this.db("bench_items").insert({ ...itemData });
       return true;
     } catch (error) {
+      console.log(error);
       return false;
     }
   };

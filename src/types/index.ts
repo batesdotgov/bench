@@ -21,7 +21,7 @@ export interface IUser {
 }
 
 export interface IBenchService {
-  ListBenchItems: any;
+  ListBenchItems(userId: string): Promise<Array<any>>;
   CreateItem(benchItem: INewBenchItem): Promise<boolean>;
 }
 

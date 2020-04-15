@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { IBenchService } from "../types";
 import { createBenchItemValidation } from "../middlewares/validation";
 import authRequired from "../middlewares/auth";
+import { IAuthUserRequest } from "../types/ExtendRequest";
 
 class BenchController {
   router = Router();
@@ -22,12 +23,16 @@ class BenchController {
     );
   };
 
-  Get = (req: Request, res: Response) => {
-    return res.send("hello");
+  Get = async (req: IAuthUserRequest, res: Response) => {
+    return res.send(await this.benchService.ListBenchItems("1"));
   };
 
-  Create = (req: Request, res: Response) => {
-    return res.send();
+  Create = async (req: Request, res: Response) => {
+    if (await this.benchService.CreateItem(req.body)) {
+      return res.send();
+    }
+
+    return res.status(500).json({ msg: "Could not create bench item" });
   };
 }
 
