@@ -1,34 +1,28 @@
-import express, { Application } from "express";
+require("dotenv").config();
+import bodyParser from "body-parser";
+import morgan from "morgan";
 
-class App {
-  private app: Application;
-  private port: number;
+import config from "../config";
+import HomeController from "../controllers/HomeController";
+import AuthController from "../controllers/AuthController";
+import BenchController from "../controllers/BenchController";
 
-  constructor(appInit: { port: number; middleWares; controllers }) {
-    this.app = express();
-    this.port = appInit.port;
+import App from "./setup";
 
-    this.middlewares(appInit.middleWares);
-    this.routes(appInit.controllers);
-  }
+const configureApp = (services) => {
+  return new App({
+    port: config.PORT,
+    controllers: [
+      new HomeController(),
+      new AuthController(services.userService),
+      new BenchController(services.benchService),
+    ],
+    middleWares: [
+      bodyParser.json(),
+      morgan("dev"),
+      bodyParser.urlencoded({ extended: true }),
+    ],
+  });
+};
 
-  private middlewares(middleWares) {
-    middleWares.forEach((middleWare) => {
-      this.app.use(middleWare);
-    });
-  }
-
-  private routes(controllers) {
-    controllers.forEach((controller) => {
-      this.app.use("/api", controller.router);
-    });
-  }
-
-  public listen() {
-    this.app.listen(this.port, () => {
-      console.log(`App listening on the http://localhost:${this.port}`);
-    });
-  }
-}
-
-export default App;
+export default configureApp;
