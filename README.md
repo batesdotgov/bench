@@ -10,11 +10,7 @@ Bench item tracker (Vue, Node, Docker, MySql).
 
 ## Install Dependencies
 
-In the root of the project install both the server and client dependencies.
-
-```
-npm run install-deps
-```
+Run `npm install` in both the root and `client/` folders;
 
 ## Create Database Instance
 

@@ -10,6 +10,7 @@ import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
 import BenchItemForm from "@/components/BenchItemForm";
 
+// register router
 Vue.use(Router);
 
 const authCheck = (to, from, next) => {

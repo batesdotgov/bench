@@ -3,3 +3,5 @@ node_modules
 .env
 build
 mysql-data
+package-lock.json
+yarn.lock
