@@ -1,7 +1,9 @@
 <template>
   <nav>
     <div class="nav-left">
-      <h1>BENCH.</h1>
+      <router-link to="/">
+        <h1>BENCH.</h1>
+      </router-link>
     </div>
     <div class="nav-right">
       <div v-if="!isLoggedIn" class="logged-out-nav">

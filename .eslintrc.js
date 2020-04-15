@@ -1,6 +1,10 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  extends: ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
+  ],
   settings: {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"],
@@ -19,5 +23,6 @@ module.exports = {
     "@typescript-eslint/no-parameter-properties": 0,
     "@typescript-eslint/interface-name-prefix": 0,
     "@typescript-eslint/no-unused-vars": 1,
+    "@typescript-eslint/no-explicit-any": 0,
   },
 };

@@ -18,8 +18,8 @@
               <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
             </div>
           </div>
+          <button type="submit" @click.prevent="handleSubmit">Login</button>
         </form>
-        <button type="submit" @click.prevent="handleSubmit">Login</button>
       </div>
     </div>
   </div>

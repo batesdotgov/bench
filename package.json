@@ -4,10 +4,10 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start:server": "nodemon",
+    "server:dev": "nodemon",
     "build": "rm -rf build/ && tsc",
     "start": "node build/index.js",
-    "start:client": "cd client && yarn serve",
+    "client:dev": "cd client && yarn serve",
     "db:up": "bash scripts/start-db.sh",
     "db:down": "bash scripts/stop-db.sh",
     "db:init": "node data/init.js",

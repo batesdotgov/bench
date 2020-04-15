@@ -22,4 +22,13 @@ export interface IUser {
 
 export interface IBenchService {
   ListBenchItems: any;
+  CreateItem(benchItem: INewBenchItem): Promise<boolean>;
+}
+
+export interface INewBenchItem {
+  title: string;
+  description: string;
+  locationId: number;
+  commitmentTypeId: number;
+  points: number;
 }

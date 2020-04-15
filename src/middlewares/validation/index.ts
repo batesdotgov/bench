@@ -27,5 +27,17 @@ const loginRules = () => {
   ];
 };
 
+const newBenchItemRules = () => {
+  return [
+    body("userId").trim().notEmpty(),
+    body("locationId").trim().notEmpty(),
+    body("commitmentTypeId").trim().notEmpty(),
+    body("title").trim().notEmpty(),
+    body("description").trim().notEmpty(),
+    body("points").trim().notEmpty(),
+  ];
+};
+
 export const loginValidation = () => validate(loginRules());
 export const registerValidation = () => validate(registerRules());
+export const createBenchItemValidation = () => validate(newBenchItemRules());

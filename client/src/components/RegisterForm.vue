@@ -1,33 +1,35 @@
 <template>
   <div class="login-page">
     <div class="card">
-      <form novalidate>
-        <div class="form-input" :class="{ 'form-input--error': showError($v.form.username.$error) }">
-          <label for="username">Username</label>
-          <input id="fname" v-model="$v.form.username.$model" type="text" />
-          <div class="input-error--wrapper">
-            <span v-if="submitted && !$v.form.username.required">this field is required.</span>
+      <div class="form-container">
+        <form novalidate>
+          <div class="form-group" :class="{ 'form-input--error': showError($v.form.username.$error) }">
+            <label for="username">Username</label>
+            <input id="fname" v-model="$v.form.username.$model" type="text" />
+            <div class="input-error--wrapper">
+              <span v-if="submitted && !$v.form.username.required">this field is required.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-input" :class="{ 'form-input--error': showError($v.form.password.$error) }">
-          <label for="password">Password</label>
-          <input type="password" v-model.trim="$v.form.password.$model" />
-          <div class="input-error--wrapper">
-            <span v-if="submitted && !$v.form.password.required">this field is required.</span>
-            <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
+          <div class="form-group" :class="{ 'form-input--error': showError($v.form.password.$error) }">
+            <label for="password">Password</label>
+            <input type="password" v-model.trim="$v.form.password.$model" />
+            <div class="input-error--wrapper">
+              <span v-if="submitted && !$v.form.password.required">this field is required.</span>
+              <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
+            </div>
           </div>
-        </div>
-        <div class="form-input" :class="{ 'form-input--error': showError($v.form.confirmPassword.$error) }">
-          <label for="password">Confirm Password</label>
-          <input type="password" v-model.trim="$v.form.confirmPassword.$model" />
-          <div class="input-error--wrapper">
-            <span v-if="submitted && !$v.form.confirmPassword.required">this field is required.</span>
-            <span v-if="submitted && !$v.form.confirmPassword.minLength">Password must be at least 8 characters</span>
-            <span v-if="passworMatchError">Password must match</span>
+          <div class="form-group" :class="{ 'form-input--error': showError($v.form.confirmPassword.$error) }">
+            <label for="password">Confirm Password</label>
+            <input type="password" v-model.trim="$v.form.confirmPassword.$model" />
+            <div class="input-error--wrapper">
+              <span v-if="submitted && !$v.form.confirmPassword.required">this field is required.</span>
+              <span v-if="submitted && !$v.form.confirmPassword.minLength">Password must be at least 8 characters</span>
+              <span v-if="passworMatchError">Password must match</span>
+            </div>
           </div>
-        </div>
-      </form>
-      <button type="submit" @click.prevent="handleSubmit">Login</button>
+          <button type="submit" @click.prevent="handleSubmit">Login</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
