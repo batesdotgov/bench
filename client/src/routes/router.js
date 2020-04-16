@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 // store
-import store from "@/store/store";
+import store from "@/store";
 
 // Components
 import HomePage from "@/components/HomePage";

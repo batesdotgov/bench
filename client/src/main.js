@@ -1,17 +1,23 @@
 import Vue from "vue";
-import "reset-css";
 import axios from "axios";
 import Vuelidate from "vuelidate";
+
+// styles
+import "reset-css";
 import "@/assets/styles/global.scss";
-import App from "./App.vue";
+
+// config
+import App from "@/App.vue";
 import router from "@/routes/router";
-import store from "@/store/store";
+import store from "@/store";
+import { tokenIsValid } from "./utils/jwt";
 
-const token = localStorage.getItem("access_token");
+Vue.prototype.$http = axios;
 
-if (token) {
-  axios.defaults.headers.common["Authorization"] = token;
-  store.dispatch("set_auth");
+if (tokenIsValid()) {
+  const token = localStorage.getItem("access_token");
+  Vue.prototype.$http.defaults.headers.common["Authorization"] = token;
+  store.dispatch("set_auth", token);
 }
 
 Vue.use(Vuelidate);

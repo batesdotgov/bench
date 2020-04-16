@@ -17,13 +17,13 @@ class AuthController {
   };
 
   private login = async (req: Request, res: Response) => {
-    const token = await this.userService.Login(req.body);
+    const userData = await this.userService.Login(req.body);
 
-    if (!token) {
+    if (!userData?.token) {
       return res.status(400).json({ msg: "invalid login" });
     }
 
-    return res.json({ token });
+    return res.json(userData);
   };
 
   private register = async (req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-// vendor
+// 3rd party
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import compression from "compression";
@@ -21,7 +21,7 @@ const configureApp = (services: IServiceConfiguration) => {
       new AuthController(services.userService),
       new BenchController(services.benchService),
     ],
-    // eslint-disable-next-line prettier/prettier
+    // eslint-disable-next-line
     middleWares: [compression(), bodyParser.json(), morgan("dev"), bodyParser.urlencoded({ extended: true })],
   });
 };

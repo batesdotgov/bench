@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import cors from "cors";
 import path from "path";
 
 class App {
@@ -8,7 +9,7 @@ class App {
   constructor(appInit: { port: number; middleWares; controllers }) {
     this.app = express();
     this.port = appInit.port;
-
+    this.registerCors();
     this.middlewares(appInit.middleWares);
     this.routes(appInit.controllers);
     this.registerStatic();
@@ -31,6 +32,10 @@ class App {
     this.app.all("*", (req, res) => {
       res.sendFile(path.join(__dirname + "/../../client/dist/index.html"));
     });
+  }
+
+  registerCors() {
+    process.env.NODE_ENV === "development" && this.app.use(cors("*"));
   }
 
   public listen() {

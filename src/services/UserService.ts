@@ -32,17 +32,24 @@ class UserService implements IUserService {
   };
 
   Login = async (data: INewUser) => {
-    const user: IUser = await this.FindByUsername(data.username);
+    const newUser: IUser = await this.FindByUsername(data.username);
 
-    if (!user) {
+    if (!newUser) {
       return null;
     }
 
-    if (!this.comparePasswords(data.password, user.password)) {
+    if (!this.comparePasswords(data.password, newUser.password)) {
       return null;
     }
 
-    return this.generateToken(user.id);
+    const token = this.generateToken(newUser.id);
+
+    const user = {
+      id: newUser.id,
+      username: newUser.username,
+    };
+
+    return { token, user };
   };
 
   private generateHash = (password: string) => {
@@ -54,7 +61,7 @@ class UserService implements IUserService {
   };
 
   generateToken = (userId: string) => {
-    return jwt.sign({ userId }, this.config.JWT_SECRET, { expiresIn: 60 * 60 });
+    return jwt.sign({ userId }, this.config.JWT_SECRET, { expiresIn: 30 });
   };
 }
 
