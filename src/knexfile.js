@@ -1,7 +1,7 @@
 /*eslint-disable */
 const { knexSnakeCaseMappers } = require("objection");
 
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 
 module.exports = {
   client: "mysql",
@@ -16,7 +16,7 @@ module.exports = {
     max: 10,
   },
   migrations: {
-    directory: "./migrations",
+    directory: "../migrations",
     tableName: "knex_migrations",
   },
 };

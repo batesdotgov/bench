@@ -1,6 +1,6 @@
 import Knex from "knex";
 import App from "./app";
-import knexConfig from "../knexfile";
+import knexConfig from "./knexfile";
 import config from "./config";
 import UserService from "./services/UserService";
 import BenchService from "./services/BenchService";

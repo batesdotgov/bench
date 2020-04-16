@@ -13,7 +13,7 @@
     "db:up": "bash scripts/start-db.sh",
     "db:down": "bash scripts/stop-db.sh",
     "db:init": "node -r dotenv/config data/init.js",
-    "db:migrate": "knex migrate:latest",
+    "db:migrate": "knex --knexfile=./src/knexfile.js migrate:latest",
     "db:rollback": " knex knex migrate:rollback"
   },
   "keywords": [],
