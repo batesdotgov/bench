@@ -31,8 +31,10 @@ class AuthController {
       return res.status(400).json({ msg: "username already exists" });
     }
 
-    if (await this.userService.CreateUser(req.body)) {
-      return res.send();
+    const newUser = await this.userService.CreateUser(req.body);
+
+    if (newUser?.token) {
+      return res.send(newUser);
     } else {
       return res.status(500).send("Error creating user");
     }

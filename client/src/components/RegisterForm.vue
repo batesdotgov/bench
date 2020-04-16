@@ -1,5 +1,6 @@
 <template>
   <div class="login-page">
+    <div class="http-error" v-if="submitError">{{ submitError }}</div>
     <div class="card">
       <div class="form-container">
         <form novalidate>
@@ -42,6 +43,7 @@ export default {
     return {
       name: "RegisterForm",
       submitted: false,
+      submitError: null,
       form: {
         username: "",
         password: "",
@@ -71,9 +73,17 @@ export default {
       this.$v.form.$touch();
       !this.$v.form.$invalid && this.register();
     },
-    async register() {},
+    async register() {
+      this.$store
+        .dispatch("register", this.form)
+        .then(() => this.$router.push("/"))
+        .catch((err) => this.handleLoginError(err));
+    },
     showError(hasError) {
       return this.$v.form.$dirty && this.submitted && hasError;
+    },
+    handleLoginError(err) {
+      this.submitError = err || "There was an error logging in";
     },
   },
 };

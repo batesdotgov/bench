@@ -20,11 +20,17 @@ class UserService implements IUserService {
   CreateUser = async (data: INewUser) => {
     try {
       const hashedPassword = this.generateHash(data.password);
-      await this.db("users").insert({
-        username: data.username,
-        password: hashedPassword,
-      });
-      return true;
+
+      const newUser = await this.db("users")
+        .insert({
+          username: data.username,
+          password: hashedPassword,
+        })
+        .returning("id,username");
+
+      const token = this.generateToken(newUser[0].id);
+
+      return { token, user: newUser };
     } catch (error) {
       console.log(error);
       return false;

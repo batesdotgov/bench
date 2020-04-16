@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setUserAuth } from "./helpers";
+import { setUserAuth } from "@/store/helpers";
 
 const BASE_URL = process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_URL : "";
 
@@ -34,6 +34,22 @@ const authModule = {
       return new Promise((resolve, reject) => {
         commit("auth_request");
         axios({ url: `${BASE_URL}/api/login`, data: user, method: "POST" })
+          .then((resp) => {
+            setUserAuth(resp.data.token);
+            commit("auth_success", resp.data);
+            resolve(resp);
+          })
+          .catch((err) => {
+            commit("auth_error", err.message);
+            localStorage.removeItem("access_token");
+            reject(err?.response?.data?.msg);
+          });
+      });
+    },
+    register: ({ commit }, user) => {
+      return new Promise((resolve, reject) => {
+        commit("auth_request");
+        axios({ url: `${BASE_URL}/api/register`, data: user, method: "POST" })
           .then((resp) => {
             setUserAuth(resp.data.token);
             commit("auth_success", resp.data);
