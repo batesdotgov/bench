@@ -12,6 +12,17 @@ Bench item tracker (Vue, Node, Docker, MySql).
 
 Run `npm install` in both the root and `client/` folders.
 
+## Create ENV file
+In the root of the project, create a `.env` file with the following contents.
+
+```
+NODE_ENV=development
+JWT_SECRET=localsecret
+DB_USER=root
+DB_PASS=password
+DB_NAME=my_database
+```
+
 ## Create Database Instance
 
 Create a local MySql instance with Docker.
