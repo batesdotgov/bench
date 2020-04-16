@@ -21,7 +21,6 @@ const configureApp = (services: IServiceConfiguration) => {
       new AuthController(services.userService),
       new BenchController(services.benchService),
     ],
-    // eslint-disable-next-line
     middleWares: [compression(), bodyParser.json(), morgan("dev"), bodyParser.urlencoded({ extended: true })],
   });
 };

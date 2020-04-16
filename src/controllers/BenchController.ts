@@ -16,8 +16,6 @@ class BenchController {
   initRoutes = () => {
     this.router.get("/bench-items", authRequired, this.List);
     this.router.get("/bench-items/types-and-locations", authRequired, this.TypesAndLocations);
-
-    /*eslint-disable-next-line */
     this.router.post("/bench-items", authRequired, createBenchItemValidation(), this.Create);
     this.router.put("/bench-items", authRequired, createBenchItemValidation(), this.Update);
     this.router.get("/bench-items/:id", authRequired, this.Get);

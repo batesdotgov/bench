@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { body } from "express-validator";
 import validate from "./helper";
 

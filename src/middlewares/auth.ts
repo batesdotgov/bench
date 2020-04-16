@@ -3,7 +3,6 @@ import config from "../config";
 
 const authRequired = (req, res, next) => {
   try {
-    // eslint-disable-next-line prettier/prettier
     const decoded: any = jwt.verify(req.headers.authorization, config.JWT_SECRET);
     req.userId = decoded.userId;
     next();
