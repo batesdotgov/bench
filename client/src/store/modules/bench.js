@@ -6,7 +6,7 @@ const benchModule = {
   state: {
     pending: false,
     list: [],
-    error: [],
+    error: null,
   },
   mutations: {
     setList: (state, list) => {
@@ -14,17 +14,19 @@ const benchModule = {
       state.error = false;
       state.pending = false;
     },
+    setError: (state, err) => {
+      state.error = err;
+    },
   },
   actions: {
     fetch: ({ commit }) => {
       return new Promise(() => {
         axios({ url: `${BASE_URL}/bench-items`, method: "GET" })
           .then((res) => {
-            console.log(res);
             commit("setList", res.data);
           })
           .catch((err) => {
-            console.log(err);
+            commit("setError", err.response.data.msg);
           });
       });
     },

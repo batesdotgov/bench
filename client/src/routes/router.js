@@ -41,7 +41,8 @@ const routes = [
     beforeEnter: authCheck,
   },
   {
-    path: "/edit/:item_id",
+    path: "/edit/:id",
+    name: "edit",
     component: BenchItemForm,
     beforeEnter: authCheck,
   },

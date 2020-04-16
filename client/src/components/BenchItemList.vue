@@ -6,7 +6,6 @@
           <button @click="createItem">New</button>
         </div>
       </div>
-
       <div class="loading" v-if="pending">loading...</div>
       <div class="main-list card">
         <bench-item v-for="item in list" v-bind:item="item" v-bind:key="item.id"></bench-item>
