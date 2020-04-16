@@ -8,10 +8,8 @@ const registerRules = () => {
       .trim()
       .isLength({ min: 8 })
       .withMessage("password must be longer than 8 characters"),
-    body("confirmPassword")
-      .trim()
-      .matches("password")
-      .withMessage("passwords must match"),
+    // eslint-disable-next-line prettier/prettier
+    body("confirmPassword").trim().matches("password").withMessage("passwords must match"),
   ];
 };
 

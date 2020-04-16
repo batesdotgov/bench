@@ -1,6 +1,10 @@
 /* eslint-disable */
 var K = require("knex");
 
+if (process.env.NODE_ENV != "development") {
+  process.exit(1);
+}
+
 const conn = {
   host: "0.0.0.0",
   user: "root",
@@ -26,4 +30,5 @@ knex
   })
   .catch(function (err) {
     console.error("error dropping database:", err);
+    process.exit(1);
   });

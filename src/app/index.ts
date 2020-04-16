@@ -1,15 +1,18 @@
-require("dotenv").config();
+// vendor
 import bodyParser from "body-parser";
 import morgan from "morgan";
 
+//app config
+import App from "./setup";
 import config from "../config";
+import { IServiceConfiguration } from "../types";
+
+//controllers
 import HomeController from "../controllers/HomeController";
 import AuthController from "../controllers/AuthController";
 import BenchController from "../controllers/BenchController";
 
-import App from "./setup";
-
-const configureApp = (services) => {
+const configureApp = (services: IServiceConfiguration) => {
   return new App({
     port: config.PORT,
     controllers: [
@@ -17,11 +20,8 @@ const configureApp = (services) => {
       new AuthController(services.userService),
       new BenchController(services.benchService),
     ],
-    middleWares: [
-      bodyParser.json(),
-      morgan("dev"),
-      bodyParser.urlencoded({ extended: true }),
-    ],
+    // eslint-disable-next-line prettier/prettier
+    middleWares: [bodyParser.json(), morgan("dev"), bodyParser.urlencoded({ extended: true })],
   });
 };
 
