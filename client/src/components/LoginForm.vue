@@ -3,19 +3,27 @@
     <div class="card">
       <div class="form-container">
         <form novalidate>
-          <div class="form-group" :class="{ 'form-input--error': showError($v.form.username.$error) }">
+          <div
+            class="form-group"
+            :class="{ 'form-input--error': showError($v.form.username.$error) }"
+          >
             <label for="username">Username</label>
             <input autocomplete="off" id="name" v-model="$v.form.username.$model" type="text" />
             <div class="input-error--wrapper">
               <span v-if="submitted && !$v.form.username.required">this field is required.</span>
             </div>
           </div>
-          <div class="form-group" :class="{ 'form-input--error': showError($v.form.password.$error) }">
+          <div
+            class="form-group"
+            :class="{ 'form-input--error': showError($v.form.password.$error) }"
+          >
             <label for="password">Password</label>
             <input type="password" v-model="$v.form.password.$model" />
             <div class="input-error--wrapper">
               <span v-if="submitted && !$v.form.password.required">this field is required.</span>
-              <span v-if="submitted && !$v.form.password.minLength">Password must be at least 8 characters</span>
+              <span v-if="submitted && !$v.form.password.minLength"
+                >Password must be at least 8 characters</span
+              >
             </div>
           </div>
           <button type="submit" @click.prevent="handleSubmit">Login</button>

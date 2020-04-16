@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import path from "path";
 
 class App {
   private app: Application;
@@ -10,6 +11,7 @@ class App {
 
     this.middlewares(appInit.middleWares);
     this.routes(appInit.controllers);
+    this.registerStatic();
   }
 
   private middlewares(middleWares) {
@@ -21,6 +23,13 @@ class App {
   private routes(controllers) {
     controllers.forEach((controller) => {
       this.app.use("/api", controller.router);
+    });
+  }
+
+  registerStatic() {
+    this.app.use(express.static(path.join(__dirname, "/../../client/dist")));
+    this.app.all("*", (req, res) => {
+      res.sendFile(path.join(__dirname + "/../../client/dist/index.html"));
     });
   }
 

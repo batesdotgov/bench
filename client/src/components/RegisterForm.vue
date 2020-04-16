@@ -27,7 +27,7 @@
               <span v-if="passworMatchError">Password must match</span>
             </div>
           </div>
-          <button type="submit" @click.prevent="handleSubmit">Login</button>
+          <button type="submit" @click.prevent="handleSubmit">Register</button>
         </form>
       </div>
     </div>
