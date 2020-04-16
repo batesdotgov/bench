@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router, Response } from "express";
 import { IBenchService, INewBenchItem } from "../types";
 import { createBenchItemValidation } from "../middlewares/validation";
@@ -26,6 +25,7 @@ class BenchController {
   };
 
   List = async (req: IAuthUserRequest, res: Response) => {
+    console.log(req.userId);
     return res.send(await this.benchService.ListBenchItems(req.userId));
   };
 

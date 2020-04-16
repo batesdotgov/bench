@@ -12,9 +12,9 @@
     "start-local": "npm run build:client && npm run build:server &&  npm run start",
     "db:up": "bash scripts/start-db.sh",
     "db:down": "bash scripts/stop-db.sh",
-    "db:init": "node data/init.js",
-    "db:migrate": "knex --knexfile=./src/knexfile.js migrate:latest",
-    "db:rollback": "knex --knexfile=./src/knexfile.js knex migrate:rollback"
+    "db:init": "node -r dotenv/config data/init.js",
+    "db:migrate": "knex migrate:latest",
+    "db:rollback": " knex knex migrate:rollback"
   },
   "keywords": [],
   "author": "",

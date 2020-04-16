@@ -1,7 +1,8 @@
 /* eslint-disable */
 var K = require("knex");
 
-if (process.env.NODE_ENV != "development") {
+if (process.env.NODE_ENV !== "development") {
+  console.log("not in development");
   process.exit(1);
 }
 
