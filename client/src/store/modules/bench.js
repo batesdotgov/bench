@@ -44,6 +44,28 @@ const benchModule = {
           });
       });
     },
+    new: (_, data) => {
+      return new Promise((resolve, reject) => {
+        axios({ url: `${BASE_URL}/bench-items`, data, method: "POST" })
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    update: (_, data) => {
+      return new Promise((resolve, reject) => {
+        axios({ url: `${BASE_URL}/bench-items`, data, method: "PUT" })
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
   },
   getters: {},
 };

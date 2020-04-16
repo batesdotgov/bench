@@ -7,17 +7,25 @@ class BenchService implements IBenchService {
   constructor(db: Knex) {
     this.db = db;
   }
-  UpdateItem = async (userId: string, data: any): Promise<any> => {
+
+  UpdateItem = async (benchItem: INewBenchItem): Promise<any> => {
+    delete benchItem.created;
     try {
       await this.db("bench_items")
-        .where({ id: data.id, userId })
-        .update({ ...data })
-        .delete();
+        .where({ id: benchItem.id, userId: benchItem.userId })
+        .update({ ...benchItem });
+
       return true;
     } catch (error) {
       console.log(error);
       return false;
     }
+  };
+
+  FetchLocationsAndTypes = async (): Promise<any> => {
+    const locations = await this.db("locations");
+    const types = await this.db("commitment_types");
+    return { locations, types };
   };
 
   DeleteItem = async (userId: string, id: string): Promise<any> => {
@@ -55,6 +63,8 @@ class BenchService implements IBenchService {
       const newItem = await this.db("bench_items")
         .insert({ ...itemData })
         .returning("id");
+
+      console.log(newItem);
       return newItem[0];
     } catch (error) {
       console.log(error);
