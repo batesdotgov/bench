@@ -6,20 +6,30 @@
           <button @click="createItem">New</button>
         </div>
       </div>
+
+      <div class="loading" v-if="pending">loading...</div>
       <div class="main-list card">
-        <div class="list-item">
-          learning
-        </div>
-        <div class="list-item">
-          learning
-        </div>
+        <bench-item v-for="item in list" v-bind:item="item" v-bind:key="item.id"></bench-item>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import BenchItem from "./BenchItem";
+
 export default {
+  mounted() {
+    this.$store.dispatch("bench/fetch");
+  },
+  components: {
+    "bench-item": BenchItem,
+  },
+  computed: {
+    ...mapState("bench", ["pending"]),
+    ...mapState("bench", ["list"]),
+  },
   methods: {
     createItem() {
       this.$router.push("/new");
@@ -44,10 +54,5 @@ export default {
 
 .main-list {
   margin: 20px 0;
-
-  .list-item {
-    padding: 20px;
-    border-bottom: 1px solid #eaecef;
-  }
 }
 </style>

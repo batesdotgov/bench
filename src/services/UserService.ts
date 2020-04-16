@@ -67,7 +67,7 @@ class UserService implements IUserService {
   };
 
   generateToken = (userId: string) => {
-    return jwt.sign({ userId }, this.config.JWT_SECRET, { expiresIn: 30 });
+    return jwt.sign({ userId }, this.config.JWT_SECRET, { expiresIn: 30000 });
   };
 }
 

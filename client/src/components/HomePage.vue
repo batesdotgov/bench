@@ -42,7 +42,7 @@ export default {
     "bench-item-list": BenchItemList,
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters("auth", ["isLoggedIn"]),
   },
 };
 </script>

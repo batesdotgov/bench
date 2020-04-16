@@ -22,11 +22,11 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters("auth", ["isLoggedIn"]),
   },
   methods: {
     logout() {
-      this.$store.dispatch("logout").then(() => {
+      this.$store.dispatch("auth/logout").then(() => {
         window.location.replace("/");
       });
     },
@@ -43,7 +43,6 @@ nav {
   height: 70px;
   background-color: white;
   border-bottom: 1px solid #eaecef;
-  padding: 20px 50px;
   &:hover {
     cursor: pointer;
   }

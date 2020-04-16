@@ -75,7 +75,7 @@ export default {
     },
     async register() {
       this.$store
-        .dispatch("register", this.form)
+        .dispatch("auth/register", this.form)
         .then(() => this.$router.push("/"))
         .catch((err) => this.handleLoginError(err));
     },

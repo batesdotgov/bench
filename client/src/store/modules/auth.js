@@ -1,9 +1,8 @@
 import axios from "axios";
-import { setUserAuth } from "@/store/helpers";
-
-const BASE_URL = process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_URL : "";
+import { setUserAuth, BASE_URL } from "@/store/helpers";
 
 const authModule = {
+  namespaced: true,
   state: {
     token: false,
     user: null,
@@ -33,7 +32,7 @@ const authModule = {
     login: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        axios({ url: `${BASE_URL}/api/login`, data: user, method: "POST" })
+        axios({ url: `${BASE_URL}/login`, data: user, method: "POST" })
           .then((resp) => {
             setUserAuth(resp.data.token);
             commit("auth_success", resp.data);
@@ -49,7 +48,7 @@ const authModule = {
     register: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        axios({ url: `${BASE_URL}/api/register`, data: user, method: "POST" })
+        axios({ url: `${BASE_URL}/register`, data: user, method: "POST" })
           .then((resp) => {
             setUserAuth(resp.data.token);
             commit("auth_success", resp.data);

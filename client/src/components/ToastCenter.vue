@@ -1,9 +1,9 @@
 <template>
-  <div></div>
+  <div class="toast-container">hey</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style lang="scss"></style>
+<style></style>

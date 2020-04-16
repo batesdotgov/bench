@@ -17,7 +17,7 @@ Vue.prototype.$http = axios;
 if (tokenIsValid()) {
   const token = localStorage.getItem("access_token");
   Vue.prototype.$http.defaults.headers.common["Authorization"] = token;
-  store.dispatch("set_auth", token);
+  store.dispatch("auth/set_auth", token);
 }
 
 Vue.use(Vuelidate);

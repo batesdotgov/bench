@@ -14,7 +14,8 @@ import BenchItemForm from "@/components/BenchItemForm";
 Vue.use(Router);
 
 const authCheck = (to, from, next) => {
-  if (store.getters.isLoggedIn) {
+  console.log(store.getters);
+  if (store.getters["auth/isLoggedIn"]) {
     next();
     return;
   }

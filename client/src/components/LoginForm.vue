@@ -57,7 +57,7 @@ export default {
     },
     async login() {
       this.$store
-        .dispatch("login", this.form)
+        .dispatch("auth/login", this.form)
         .then(() => this.$router.push("/"))
         .catch((err) => this.handleLoginError(err));
     },

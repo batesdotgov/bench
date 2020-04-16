@@ -28,7 +28,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$breakpoint-desktop: 1280px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 400px;
+
+nav {
+  @media (min-width: $breakpoint-mobile) {
+    padding: 10px;
+  }
+  @media (min-width: $breakpoint-tablet) {
+    padding: 20px 5%;
+  }
+  @media (min-width: $breakpoint-desktop) {
+    padding: 20px 15%;
+  }
+}
+
 .main {
-  padding: 50px;
+  @media (min-width: $breakpoint-mobile) {
+    padding: 10px;
+  }
+  @media (min-width: $breakpoint-tablet) {
+    padding: 20px 5%;
+  }
+  @media (min-width: $breakpoint-desktop) {
+    padding: 50px 15%;
+  }
 }
 </style>
