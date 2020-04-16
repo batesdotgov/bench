@@ -95,7 +95,8 @@ export default {
     color: red;
   }
 
-  input {
+  input,
+  textarea {
     color: red;
     border: 1px solid red;
   }

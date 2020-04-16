@@ -7,8 +7,8 @@
     </div>
     <div class="nav-right">
       <div v-if="!isLoggedIn" class="logged-out-nav">
-        <router-link to="/register">Register</router-link>
         <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
       </div>
       <div v-if="isLoggedIn" class="logged-in-nav">
         <div to="/register" @click.prevent="logout">Logout</div>

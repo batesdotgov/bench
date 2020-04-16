@@ -7,7 +7,10 @@
         </div>
       </div>
       <div class="loading" v-if="pending">loading...</div>
-      <div class="main-list card">
+      <div class="card no-items" v-if="!pending && list.length === 0">
+        No bench items
+      </div>
+      <div class="main-list card" v-if="!pending && list.length > 0">
         <bench-item v-for="item in list" v-bind:item="item" v-bind:key="item.id"></bench-item>
       </div>
     </div>
@@ -53,5 +56,12 @@ export default {
 
 .main-list {
   margin: 20px 0;
+}
+
+.no-items {
+  padding: 30px;
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 20px;
 }
 </style>

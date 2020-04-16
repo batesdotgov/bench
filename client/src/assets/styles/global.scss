@@ -51,9 +51,14 @@ button {
   }
 }
 
+.bold {
+  font-weight: 500;
+}
+
 .form-group {
   margin: 10px 0px;
-  input {
+  input,
+  textarea {
     outline: 0;
     margin: 0;
     width: 100%;
@@ -64,11 +69,18 @@ button {
     padding: 10px;
     border-radius: 3px;
     border: 1px solid gray;
+    resize: none;
 
     &:focus {
       outline: 0;
       box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
     }
+  }
+
+  textarea {
+    height: auto;
+    min-height: 100px;
+    line-height: inherit;
   }
 
   label {

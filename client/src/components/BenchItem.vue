@@ -4,6 +4,7 @@
       <div>
         {{ item.title }}
       </div>
+      <!-- todo fetch more data on open -->
       <div class="img-wrapper" v-bind:id="item.id" @click.prevent.stop="toggleMenu" v-click-outside="hideMenu">
         <img preload src="@/assets/more.svg" />
         <div class="card menu" v-if="showMenu">
@@ -15,8 +16,10 @@
     <transition name="fade">
       <div class="description" v-if="showDetails">{{ item.description }}</div>
     </transition>
-    <modal buttonText="Delete" v-if="showModal" @close="showModal = false">
-      <div slot="body">Are you sure you want to delete this item?</div>
+    <modal buttonText="Delete" v-if="showModal" @close="showModal = false" @handle="deleteIem(item.id)">
+      <div slot="body">
+        Are you sure you want to delete bench item <span class="bold">{{ item.title }}?</span>
+      </div>
     </modal>
   </div>
 </template>
@@ -53,6 +56,12 @@ export default {
     },
     navigate(id) {
       this.$router.push({ name: "edit", params: { id } });
+    },
+    deleteIem(id) {
+      this.$store.dispatch("bench/delete", id).then(() => {
+        this.showModal = false;
+        // send off notification action
+      });
     },
   },
   directives: {

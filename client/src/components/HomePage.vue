@@ -4,24 +4,15 @@
       <h1>Welcome to Bench.</h1>
       <div class="info-center card">
         <div class="header">
-          Contact Information
+          Contacts
         </div>
         <div class="body">
           <div class="contact-item">
             <div class="name">
-              Brian
+              Chris Barr
             </div>
             <div class="email">
-              bra@.g
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="name">
-              Brian
-            </div>
-            <div class="email">
-              bra@.g
+              fakeemailforchris@aol.com
             </div>
           </div>
         </div>

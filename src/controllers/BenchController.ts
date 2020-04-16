@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Router, Response } from "express";
 import { IBenchService, INewBenchItem } from "../types";
 import { createBenchItemValidation } from "../middlewares/validation";
@@ -20,6 +21,7 @@ class BenchController {
     this.router.post("/bench-items", authRequired, createBenchItemValidation(), this.Create);
 
     this.router.get("/bench-items/:id", authRequired, this.Get);
+    this.router.delete("/bench-items/:id", authRequired, this.Delete);
   };
 
   List = async (req: IAuthUserRequest, res: Response) => {
@@ -28,6 +30,13 @@ class BenchController {
 
   Get = async (req: IAuthUserRequest, res: Response) => {
     return res.send(await this.benchService.GetItem(req.userId, req.params.id));
+  };
+
+  Delete = async (req: IAuthUserRequest, res: Response) => {
+    if (await this.benchService.DeleteItem(req.userId, req.params.id)) {
+      return res.send();
+    }
+    return res.status(500).json({ msg: "Error deleting item" });
   };
 
   Create = async (req: IAuthUserRequest, res: Response) => {
