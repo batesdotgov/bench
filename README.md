@@ -12,7 +12,7 @@ Bench item tracker (Vue, Node, Docker, MySql).
 
 Run `npm install` in both the root and `client/` folders.
 
-## Create ENV file
+## Create ENV File
 In the root of the project, create a `.env` file with the following contents.
 
 ```
