@@ -6,7 +6,7 @@ Bench item tracker (Vue, Node, Docker, MySql).
 
 - Node.js, NPM/Yarn
 - Docker Desktop
-- VSCode (my current IDE)
+- VSCode (optional)
 
 ## Install Dependencies
 
