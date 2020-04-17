@@ -74,5 +74,5 @@ You can now open the client on `localhost:8080` and the server on `localhost:500
 Locally run the full stack with Express serving a Vue production build.
 
 ```
-npm run start:local
+npm run start-local
 ```
